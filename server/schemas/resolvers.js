@@ -1,9 +1,9 @@
-//insert resolvers here
+const { Tutor } = require('../models');
 
 const resolvers = {
     Query: {
-        /* insert thing here */: async () => {
-            return await /* thing */.find();
+        tutors: async () => {
+            return await Tutor.find();
         },
     },
 };
