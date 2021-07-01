@@ -29,11 +29,11 @@ const TutorSchema = new Schema({
     },
     rate: {
         type: String,
-        required: true,
+        required: false,
     },
     about: {
         type: String,
-        required: true,
+        required: false,
     },
 });
 
