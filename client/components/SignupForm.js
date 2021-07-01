@@ -124,8 +124,8 @@ const SignupForm = () => {
         
          <form>
          
-          <input type="radio" name="fruit" value="student" />Student   
-          <input type="radio" name="fruit" value="tutor" />Tutor
+          <input type="radio" name="choice" value="student" />Student   
+          <input type="radio" name="choice" value="tutor" />Tutor
           </form>
         
       
