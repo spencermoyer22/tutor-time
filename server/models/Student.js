@@ -1,21 +1,17 @@
 const { Schema, model } = require('mongoose');
 
-const TutorSchema = new Schema({
+const StudentSchema = new Schema({
     name: {
+        type: String,
+        required: true,
+    },
+    grade: {
         type: String,
         required: true,
     },
     subject: {
         type: String,
-        required: true,
-    },
-    location: {
-        type: String,
-        required: true,
-    },
-    rate: {
-        type: String,
-        required: true,
+        required: false,
     },
     about: {
         type: String,
@@ -23,6 +19,6 @@ const TutorSchema = new Schema({
     },
 });
 
-const Tutor = model('Tutor', TutorSchema);
+const Student = model('Student', StudentSchema);
 
-module.exports = Tutor;
+module.exports = Student;
