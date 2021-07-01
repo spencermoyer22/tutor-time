@@ -3,11 +3,7 @@ const bcrypt = require('bcrypt');
 
 const StudentSchema = new Schema({
     //change this to name instead of first + last
-    firstName: {
-        type: String,
-        required: true,
-    },
-    lastName: {
+    name: {
         type: String,
         required: true,
     },
