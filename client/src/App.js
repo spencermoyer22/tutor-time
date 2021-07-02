@@ -11,11 +11,13 @@ import {
 } from '@apollo/client';
 
 import Home from './pages/Home';
+import Navbar from './components/Nav';
 
 function App() {
   return (
     <Router>
     <div className="App">
+      {/* <Navbar /> */}
       <header className="App-header">
       <Route exact path="/" component={Home} />
       </header>
