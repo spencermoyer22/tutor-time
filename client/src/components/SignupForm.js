@@ -84,7 +84,7 @@ const SignupForm = () => {
                     <Form.Label htmlFor='password'>Password</Form.Label>
                     <Form.Control
                         type='password'
-                        placeholder='Password must be 8 characters'
+                        placeholder='Password must be a minimum of 8 characters'
                         name='password'
                         onChange={handleInputChange}
                         value={formData.password}

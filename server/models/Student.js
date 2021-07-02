@@ -19,16 +19,16 @@ const StudentSchema = new Schema({
     },
     grade: {
         type: String,
-        required: true,
-    },
-    subject: {
-        type: String,
         required: false,
     },
     about: {
         type: String,
-        required: true,
+        required: false,
     },
+    tutors: [{
+        type: Schema.Type.ObjectId,
+        ref: "Tutor",
+    }],
 });
 
 studentSchema.pre('save', async function(next) {
