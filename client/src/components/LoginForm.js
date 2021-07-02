@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
-    const [formData, setFormData] = useState({email: '', password: ''});
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showForm, setShowForm] = useState(null);
@@ -13,7 +13,7 @@ const LoginForm = () => {
 
     const handleInputChange = async (event) => {
         const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value})
+        setFormData({ ...formData, [name]: value })
     };
 
     const handleFormSubmit = async (event) => {
@@ -26,7 +26,7 @@ const LoginForm = () => {
         }
 
         try {
-            const { data } = await LoginForm({ variables: {...formData}});
+            const { data } = await LoginForm({ variables: { ...formData } });
             Auth.login(data.login.token);
         } catch (err) {
             console.log(err);
@@ -45,50 +45,84 @@ const LoginForm = () => {
             <Button onClick={() => setShowForm('tutor')}>Tutor</Button>
             <Button onClick={() => setShowForm('student')}>Student</Button>
 
-            {showForm === 'tutor' && <p> TUTOR FORM HERE</p>}
-            {showForm=== 'student' && <p> STUDENT FORM</p>}
-            {/* <Form noValidate validated={validated}>
-                <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-                    Invalid credentials!
-                </Alert>
-                <Form.Group>
-                    <Form.Label>Are you signing in as a tutor or student?</Form.Label>
-                    <Form.Control as='select' custom>
-                        <option>Tutor</option>
-                        <option>Student</option>
-                    </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='email'>Email</Form.Label>
-                    <Form.Control 
-                        type='text'
-                        placeholder='Your Email'
-                        name='email'
-                        onChange={handleInputChange}
-                        value={formData.email}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Your email is required!</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor='password'>Password</Form.Label>
-                    <Form.Control
-                        type='password'
-                        placeholder='Your password'
-                        name='password'
-                        onChange={handleInputChange}
-                        value={formData.password}
-                        required
-                    />
-                    <Form.Control.Feedback type='invalid'>Your password is required!</Form.Control.Feedback>
-                </Form.Group>
-                <Button
-                    disabled={!(formData.email && formData.password)}
-                    type='submit'
-                    Submit>
-                </Button>
-            </Form> */}
-            {/* {error && <div>Login failed</div>} */}
+            {showForm === 'tutor' &&
+                <div>
+                    <p> TUTOR FORM HERE </p>
+                    <Form noValidate validated={validated}>
+                        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            Invalid credentials!
+                        </Alert>
+                        <Form.Group>
+                            <Form.Label htmlFor='email'>Email</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Your Email'
+                                name='email'
+                                onChange={handleInputChange}
+                                value={formData.email}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Your email is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor='password'>Password</Form.Label>
+                            <Form.Control
+                                type='password'
+                                placeholder='Your password'
+                                name='password'
+                                onChange={handleInputChange}
+                                value={formData.password}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Your password is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button
+                            disabled={!(formData.email && formData.password)}
+                            type='submit'
+                            >Submit
+                        </Button>
+                    </Form>
+                    {/* {error && <div>Login failed</div>} */}
+                </div>}
+            {showForm === 'student' &&
+                <div>
+                    <p> STUDENT FORM </p>
+                    <Form noValidate validated={validated}>
+                        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+                            Invalid credentials!
+                        </Alert>
+                        <Form.Group>
+                            <Form.Label htmlFor='email'>Email</Form.Label>
+                            <Form.Control
+                                type='text'
+                                placeholder='Your Email'
+                                name='email'
+                                onChange={handleInputChange}
+                                value={formData.email}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Your email is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor='password'>Password</Form.Label>
+                            <Form.Control
+                                type='password'
+                                placeholder='Your password'
+                                name='password'
+                                onChange={handleInputChange}
+                                value={formData.password}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>Your password is required!</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button
+                            disabled={!(formData.email && formData.password)}
+                            type='submit'
+                            >Submit
+                        </Button>
+                    </Form>
+                    {/* {error && <div>Login failed</div>} */}
+                </div>}
         </div>
     );
 };

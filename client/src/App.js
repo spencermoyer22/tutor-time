@@ -12,12 +12,12 @@ import {
 
 import Home from './pages/Home';
 import AppNavbar from './components/Nav';
-import SignupForm from './components/SignupForm';
-import LoginForm from './components/LoginForm';
 
 function App() {
   return (
-    <LoginForm />
+    <Router>
+    <AppNavbar />
+    </Router>
   );
 }
 
