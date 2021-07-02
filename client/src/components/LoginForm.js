@@ -8,6 +8,7 @@ const LoginForm = () => {
     const [formData, setFormData] = useState({email: '', password: ''});
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+    const [showForm, setShowForm] = useState(null);
     // create variable for login mutation
 
     const handleInputChange = async (event) => {
@@ -40,10 +41,23 @@ const LoginForm = () => {
 
     return (
         <div>
-            <Form noValidate validated={validated}>
+            <p>Would you like to log in as a tutor or student?</p>
+            <Button onClick={() => setShowForm('tutor')}>Tutor</Button>
+            <Button onClick={() => setShowForm('student')}>Student</Button>
+
+            {showForm === 'tutor' && <p> TUTOR FORM HERE</p>}
+            {showForm=== 'student' && <p> STUDENT FORM</p>}
+            {/* <Form noValidate validated={validated}>
                 <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                     Invalid credentials!
                 </Alert>
+                <Form.Group>
+                    <Form.Label>Are you signing in as a tutor or student?</Form.Label>
+                    <Form.Control as='select' custom>
+                        <option>Tutor</option>
+                        <option>Student</option>
+                    </Form.Control>
+                </Form.Group>
                 <Form.Group>
                     <Form.Label htmlFor='email'>Email</Form.Label>
                     <Form.Control 
@@ -51,7 +65,7 @@ const LoginForm = () => {
                         placeholder='Your Email'
                         name='email'
                         onChange={handleInputChange}
-                        value={userFormData.email}
+                        value={formData.email}
                         required
                     />
                     <Form.Control.Feedback type='invalid'>Your email is required!</Form.Control.Feedback>
@@ -63,18 +77,18 @@ const LoginForm = () => {
                         placeholder='Your password'
                         name='password'
                         onChange={handleInputChange}
-                        value={userFormData.password}
+                        value={formData.password}
                         required
                     />
                     <Form.Control.Feedback type='invalid'>Your password is required!</Form.Control.Feedback>
                 </Form.Group>
                 <Button
-                    disabled={!(userFormData.email && userFormData.password)}
+                    disabled={!(formData.email && formData.password)}
                     type='submit'
                     Submit>
                 </Button>
-            </Form>
-            {error && <div>Login failed</div>}
+            </Form> */}
+            {/* {error && <div>Login failed</div>} */}
         </div>
     );
 };

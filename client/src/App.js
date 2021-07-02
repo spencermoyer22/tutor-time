@@ -11,18 +11,13 @@ import {
 } from '@apollo/client';
 
 import Home from './pages/Home';
-import Navbar from './components/Nav';
+import AppNavbar from './components/Nav';
+import SignupForm from './components/SignupForm';
+import LoginForm from './components/LoginForm';
 
 function App() {
   return (
-    <Router>
-    <div className="App">
-      {/* <Navbar /> */}
-      <header className="App-header">
-      <Route exact path="/" component={Home} />
-      </header>
-    </div>
-    </Router>
+    <LoginForm />
   );
 }
 

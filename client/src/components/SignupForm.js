@@ -3,13 +3,13 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 // import mutation to add user
 import Auth from '../utils/auth';
-import { ADD_USER } from '../../../../book-search-engine/client/src/utils/mutations';
 
 const SignupForm = () => {
     // use mutation declaration
     const [formData, setFormData] = useState({username: '', email: '', password: ''});
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+    // const [showForm, setShowForm]
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -29,7 +29,7 @@ const SignupForm = () => {
             // change based on mutation name
             // const {data} = await addUser({ variables: {...formData}});
 
-            Auth.login(data.addUser.token);
+            // Auth.login(data.addUser.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -98,7 +98,7 @@ const SignupForm = () => {
                     Submit>
                 </Button>
             </Form>
-            {error && <div>Sign up failed</div>}
+            {/* {error && <div>Sign up failed</div>} */}
         </div>
     );
 };
