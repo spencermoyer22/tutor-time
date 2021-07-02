@@ -22,7 +22,7 @@ const Navbar = () => {
                             <Nav.Link as={Link} to='/'>
                                 Find Tutors
                             </Nav.Link>
-                            {/* use terenary statment if user is logger in or not */}
+                            {/* use terenary statment if user is logged in or not */}
                             {/* add modal data based on whether auth is created */}
                         </Nav>
                     </Navbar.Collapse>
