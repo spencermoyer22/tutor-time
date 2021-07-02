@@ -9,7 +9,7 @@ const SignupForm = () => {
     const [formData, setFormData] = useState({username: '', email: '', password: ''});
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    // const [showForm, setShowForm]
+    // const [showForm, setShowForm] = useState(null);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
