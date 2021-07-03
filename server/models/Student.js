@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const StudentSchema = new Schema({
+const studentSchema = new Schema({
     //change this to name instead of first + last
     name: {
         type: String,
@@ -26,7 +26,7 @@ const StudentSchema = new Schema({
         required: false,
     },
     tutors: [{
-        type: Schema.Type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Tutor",
     }],
 });
@@ -44,6 +44,6 @@ studentSchema.pre('save', async function(next) {
     return await bcrypt.compare(password, this.password);
   };
 
-const Student = model('Student', StudentSchema);
+const Student = model('Student', studentSchema);
 
 module.exports = Student;

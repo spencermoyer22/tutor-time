@@ -5,7 +5,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
 
-        tutor: async (parent, args, context) => {
+        tutors: async (parent, args, context) => {
             if (context.tutor) {
                 const tutor = await Tutor.findById(context.tutor._id).populate()
 
@@ -15,7 +15,7 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        student: async (parent, args, context) => {
+        students: async (parent, args, context) => {
             if (context.student) {
                 const student = await Student.findById(context.tutor._id).populate()
 

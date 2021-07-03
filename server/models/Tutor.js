@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const TutorSchema = new Schema({
+const tutorSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -42,6 +42,6 @@ tutorSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
   };
 
-const Tutor = model('Tutor', TutorSchema);
+const Tutor = model('Tutor', tutorSchema);
 
 module.exports = Tutor;
