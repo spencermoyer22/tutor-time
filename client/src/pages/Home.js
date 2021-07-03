@@ -4,12 +4,12 @@ const Home = () => {
 
 
   return (
-    <div
-      className="container" 
-      
-    >
-      <h1> Welcome to Tutor Time!</h1>
-      <p className="homepage">
+    <div className="container" >
+
+        <a href="/Profile">Profile</a>
+      <h1 className="welcome"> Welcome to Tutor Time!</h1>
+      <div className="homepage">
+      <p className = "homepage-text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -18,6 +18,7 @@ const Home = () => {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
+      </div>
     </div>
   );
 };

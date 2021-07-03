@@ -11,6 +11,7 @@ import {
 } from '@apollo/client';
 
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 import Navbar from './components/Nav';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       {/* <Navbar /> */}
       <header className="App-header">
       <Route exact path="/" component={Home} />
+      <Route exact path="/Profile" component={Profile} />
       </header>
     </div>
     </Router>
