@@ -17,11 +17,7 @@ const TutorSchema = new Schema({
     },
     subject: {
         type: String,
-        required: true,
-    },
-    location: {
-        type: String,
-        required: true,
+        required: false,
     },
     rate: {
         type: String,

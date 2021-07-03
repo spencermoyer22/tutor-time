@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+import studentContext from "../utils/studentContext"
+
 
 const Profile = () => {
+
+    const studentInfo = useContext(studentContext);
 
     return (
         <div className="profile-body">
         <div>
-        <h1> Name: </h1>
+        <h1> Name: {studentInfo.name} </h1>
         <h2> Grade: </h2>
         <h2> Rate:</h2>
         <h3> Needs help with: </h3>
