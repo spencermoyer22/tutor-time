@@ -15,9 +15,10 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        students: async (parent, args, context) => {
+        getMe: async (parent, args, context) => {
+          
             if (context.student) {
-                const student = await Student.findById(context.tutor._id).populate()
+                const student = await Student.findById(context._id).populate()
 
                 return student;
             }

@@ -1,8 +1,4 @@
-import { gql } from '@apollo/client'
-
-export const ADD_TUTOR = gql`
-    `
-
+import { gql } from 'graphql-tag'
 
 export const TUTOR_LOGIN = gql`
     mutation tutorLogin($email: String!, $password: String!) {
@@ -66,3 +62,16 @@ export const ADD_STUDENT = gql`
     }
   }
 `;
+
+export const EDIT_STUDENT = gql`
+  mutation editStudent($student:[ID]!) {
+        student: ($student) {
+    $about: String!
+    $grade: String!
+  }
+}
+
+
+
+
+`
