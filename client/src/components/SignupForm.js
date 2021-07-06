@@ -143,11 +143,16 @@ const SignupForm = () => {
                                 value={tutorFormData.subject}
                                 required
                             >
+                                <option>Biology</option>
+                                <option>Chemistry</option>
+                                <option>Comupter Science</option>
                                 <option>English</option>
                                 <option>Geography</option>
                                 <option>History</option>
                                 <option>Math</option>
-                                <option>Science</option>
+                                <option>Music</option>
+                                <option>Physics</option>
+                                <option>Theater</option>
                             </Form.Control>
                         </Form.Group>
 

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { STUDENT_LOGIN, TUTOR_LOGIN } from '../utils/mutations';
-// import the actual mutation
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
@@ -72,7 +71,7 @@ const LoginForm = () => {
 
             {showForm === 'tutor' &&
                 <div>
-                    <p> TUTOR FORM HERE </p>
+                    <p> TUTOR FORM </p>
                     <Form noValidate validated={validated} onSubmit={handleTutorFormSubmit}>
                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Invalid credentials!
