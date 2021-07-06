@@ -35,8 +35,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <studentContext.Provider >
-          <Switch>
+        {/* <studentContext.Provider > */}
+          {/* <Switch> */}
           <div className="App">
             <Navbar />
             <header className="App-header">
@@ -44,8 +44,8 @@ function App() {
               <Route exact path="/profile" component={Profile} />
             </header>
           </div>
-          </Switch>
-        </studentContext.Provider>
+          {/* </Switch> */}
+        {/* </studentContext.Provider> */}
       </Router>
     </ApolloProvider>
   );

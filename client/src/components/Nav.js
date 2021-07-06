@@ -23,9 +23,16 @@ const AppNavbar = () => {
                             <Nav.Link as={Link} to='/'>
                                 Find Tutors
                             </Nav.Link>
-                            {/* use terenary statment if user is logger in or not */}
-                            {/* add modal data based on whether auth is created */}
-                            <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                            {Auth.loggedIn() ? (
+                                <>
+                                    <Nav.Link as={Link} to='/searchtutors'>Search Tutors</Nav.Link>
+                                    <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                                </>
+                            )}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
