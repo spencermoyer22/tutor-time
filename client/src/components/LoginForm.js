@@ -29,7 +29,7 @@ const LoginForm = () => {
 
         try {
             const { data } = await loginTutor({ variables: { ...formData } });
-            Auth.loginTutor(data.login.token);
+            Auth.login(data.tutorLogin.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
         try {
             const { data } = await loginStudent({ variables: { ...formData } });
-            Auth.loginTutor(data.login.token);
+            Auth.login(data.studentLogin.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -72,7 +72,7 @@ const LoginForm = () => {
 
             {showForm === 'tutor' &&
                 <div>
-                    <p> TUTOR FORM HERE </p>
+                    <p> TUTOR FORM </p>
                     <Form noValidate validated={validated} onSubmit={handleTutorFormSubmit}>
                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Invalid credentials!

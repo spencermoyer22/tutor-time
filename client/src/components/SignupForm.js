@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { ADD_STUDENT, ADD_TUTOR } from '../utils/mutations';
 // import mutation to add user
@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 const SignupForm = () => {
     // use mutation declaration
     const [studentFormData, setStudentFormData] = useState({ name: '', email: '', password: '', grade: '' });
-    const [tutorFormData, setTutorFormData] = useState({ name: '', email: '', password: '', subject: 'English', rate: '' });
+    const [tutorFormData, setTutorFormData] = useState({ name: '', email: '', password: '', subject: '', rate: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showForm, setShowForm] = useState(null);
@@ -16,7 +16,9 @@ const SignupForm = () => {
     const [addTutor, { tutorError }] = useMutation(ADD_TUTOR);
 
     const handleTutorInputChange = (event) => {
+        console.log(event.target);
         const { name, value } = event.target;
+        console.log(name, value);
         setTutorFormData({ ...tutorFormData, [name]: value });
     };
 
@@ -48,7 +50,7 @@ const SignupForm = () => {
             username: '',
             email: '',
             password: '',
-            subject: 'English',
+            subject: '',
             rate: ''
         });
     };
@@ -109,7 +111,7 @@ const SignupForm = () => {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label htmlFor='email'>Email</Form.Label>
+                            <Form.Label htmlFor='email' >Email</Form.Label>
                             <Form.Control
                                 type='email'
                                 placeholder='Your email address'
@@ -139,15 +141,17 @@ const SignupForm = () => {
                             <Form.Control
                                 as="select"
                                 custom
-                                onChange={() => handleTutorInputChange}
+                                onChange={handleTutorInputChange}
+                                name='subject'
                                 value={tutorFormData.subject}
                                 required
                             >
-                                <option>English</option>
-                                <option>Geography</option>
-                                <option>History</option>
-                                <option>Math</option>
-                                <option>Science</option>
+                                <option value=''>Select</option>
+                                <option value="English">English</option>
+                                <option value='Geography'>Geography</option>
+                                <option value='History'>History</option>
+                                <option value='Math'>Math</option>
+                                <option value='Science'>Science</option>
                             </Form.Control>
                         </Form.Group>
 

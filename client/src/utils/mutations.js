@@ -2,9 +2,9 @@ import { gql } from 'graphql-tag'
 
 export const TUTOR_LOGIN = gql`
     mutation tutorLogin($email: String!, $password: String!) {
-      login(email: $email, password: $password) {
+      tutorLogin(email: $email, password: $password) {
         token
-        user {
+        tutor {
           _id
         }
       }
@@ -13,9 +13,9 @@ export const TUTOR_LOGIN = gql`
 
 export const STUDENT_LOGIN = gql`
   mutation studentLogin($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+    studentLogin(email: $email, password: $password) {
       token
-      user {
+      student {
         _id
       }
     }
@@ -25,7 +25,7 @@ export const STUDENT_LOGIN = gql`
 export const ADD_TUTOR = gql`
   mutation addTutor($name: String, $email: String!, $password: String!, $subject: String!, $rate: String!) {
     addTutor(name: $name, email: $email, password: $password, subject: $subject, rate: $rate) {
-      id_
+      token
       user {
         _id
       }

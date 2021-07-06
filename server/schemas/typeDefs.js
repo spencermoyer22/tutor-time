@@ -23,12 +23,12 @@ const typeDefs = gql`
 
     type TutorAuth {
         token: ID
-        user: Tutor
+        tutor: Tutor
     }
 
     type StudentAuth {
         token: ID
-        user: Student
+        student: Student
     }
 
     type Query {

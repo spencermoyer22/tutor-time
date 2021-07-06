@@ -4,7 +4,7 @@ import studentContext from "../utils/studentContext"
 
 
 const Profile = () => {
-
+    
     const studentInfo = useContext(studentContext);
 
     return (
