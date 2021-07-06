@@ -21,7 +21,7 @@ const AppNavbar = () => {
                         <Nav>
                             {/* change link to tutors page when created */}
                             <Nav.Link as={Link} to='/'>
-                                Find Tutors
+                                
                             </Nav.Link>
                             {Auth.loggedIn() ? (
                                 <>
