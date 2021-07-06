@@ -23,19 +23,9 @@ export const STUDENT_LOGIN = gql`
 `;
 
 export const ADD_TUTOR = gql`
-  mutation addTutor(
-    $name: String!
-    $email: String!
-    $password: String!
-    $subject: String!
-    $rate: String!
-  ) {
-    addTutor(
-      name: $firstName
-      email: $email
-      password: $password
-    ) {
-      token
+  mutation addTutor($name: String, $email: String!, $password: String!, $subject: String!, $rate: String!) {
+    addTutor(name: $name, email: $email, password: $password, subject: $subject, rate: $rate) {
+      id_
       user {
         _id
       }
@@ -44,17 +34,8 @@ export const ADD_TUTOR = gql`
 `;
 
 export const ADD_STUDENT = gql`
-  mutation addStudent(
-    $name: String!
-    $email: String!
-    $password: String!
-    $grade: String!
-  ) {
-    addStudent(
-      name: $firstName
-      email: $email
-      password: $password
-    ) {
+  mutation addStudent($name: String!, $email: String!, $password: String!, $grade: String!) {
+    addStudent(name: $name, email: $email, password: $password, grade: $grade) {
       token
       user {
         _id
@@ -64,14 +45,10 @@ export const ADD_STUDENT = gql`
 `;
 
 export const EDIT_STUDENT = gql`
-  mutation editStudent($student:[ID]!) {
-        student: ($student) {
-    $about: String!
-    $grade: String!
+  mutation editStudent($grade: String, $about: String) {
+    editStudent(grade: $grade, about: $about) {
+        grade
+        about
+    }
   }
-}
-
-
-
-
-`
+`;

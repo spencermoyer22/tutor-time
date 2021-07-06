@@ -15,12 +15,22 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        getMe: async (parent, args, context) => {
+        getMeStudent: async (parent, args, context) => {
           
             if (context.student) {
                 const student = await Student.findById(context._id).populate()
 
                 return student;
+            }
+
+            throw new AuthenticationError('Not logged in');
+        },
+        getMeTutor: async (parent, args, context) => {
+          
+            if (context.tutor) {
+                const tutor = await Tutor.findById(context._id).populate()
+
+                return tutor;
             }
 
             throw new AuthenticationError('Not logged in');

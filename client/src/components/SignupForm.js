@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import { ADD_STUDENT, ADD_TUTOR } from '../utils/mutations';
 // import mutation to add user
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
     // use mutation declaration
-    const [studentFormData, setStudentFormData] = useState({ username: '', email: '', password: '', grade: '' });
-    const [tutorFormData, setTutorFormData] = useState({ username: '', email: '', password: '', subject: '', rate: '' });
+    const [studentFormData, setStudentFormData] = useState({ name: '', email: '', password: '', grade: '' });
+    const [tutorFormData, setTutorFormData] = useState({ name: '', email: '', password: '', subject: 'English', rate: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showForm, setShowForm] = useState(null);
+    const [addStudent, { studentError }] = useMutation(ADD_STUDENT);
+    const [addTutor, { tutorError }] = useMutation(ADD_TUTOR);
 
     const handleTutorInputChange = (event) => {
         const { name, value } = event.target;
@@ -28,15 +31,14 @@ const SignupForm = () => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
-            event.stopPropogation();
+            event.stopPropagation();
         }
 
         try {
-            // change based on mutation name
-            // const {data} = await addTutor({ variables: {...tutorFormData}});
+            const { data } = await addTutor({ variables: { ...tutorFormData } });
             console.log(tutorFormData);
 
-            // Auth.login(data.addUser.token);
+            Auth.login(data.addTutor.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -57,15 +59,14 @@ const SignupForm = () => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
-            event.stopPropogation();
+            event.stopPropagation();
         }
 
         try {
-            // change based on mutation name
-            // const {data} = await addStudent({ variables: {...studentFormData}});
+            const { data } = await addStudent({ variables: { ...studentFormData } });
             console.log(studentFormData);
 
-            // Auth.login(data.addTutor.token);
+            Auth.login(data.addStudent.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -95,16 +96,16 @@ const SignupForm = () => {
                         </Alert>
 
                         <Form.Group>
-                            <Form.Label htmlFor='username'>Username</Form.Label>
+                            <Form.Label htmlFor='username'>Name</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder='Your username'
-                                name='username'
+                                placeholder='Your name'
+                                name='name'
                                 onChange={handleTutorInputChange}
-                                value={tutorFormData.username}
+                                value={tutorFormData.name}
                                 required
                             />
-                            <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+                            <Form.Control.Feedback type='invalid'>Name is required!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group>
@@ -135,7 +136,7 @@ const SignupForm = () => {
 
                         <Form.Group>
                             <Form.Label>Select a subject</Form.Label>
-                            <Form.Control 
+                            <Form.Control
                                 as="select"
                                 custom
                                 onChange={() => handleTutorInputChange}
@@ -163,13 +164,13 @@ const SignupForm = () => {
                             <Form.Control.Feedback type='invalid'>Rate is required!</Form.Control.Feedback>
                         </Form.Group>
                         <Button
-                            disabled={!(tutorFormData.username && tutorFormData.email && tutorFormData.password && tutorFormData.subject && tutorFormData.rate)}
+                            disabled={!(tutorFormData.name && tutorFormData.email && tutorFormData.password && tutorFormData.subject && tutorFormData.rate)}
                             type='submit'
                             variant='success'>
                             Submit
                         </Button>
                     </Form>
-                    {/* {error && <div>Sign up failed</div>} */}
+                    {tutorError && <div>Sign up failed</div>}
                 </>
             }
 
@@ -183,16 +184,16 @@ const SignupForm = () => {
                         </Alert>
 
                         <Form.Group>
-                            <Form.Label htmlFor='username'>Username</Form.Label>
+                            <Form.Label htmlFor='username'>Name</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder='Your username'
-                                name='username'
+                                placeholder='Your name'
+                                name='name'
                                 onChange={handleStudentInputChange}
-                                value={studentFormData.username}
+                                value={studentFormData.name}
                                 required
                             />
-                            <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+                            <Form.Control.Feedback type='invalid'>Name is required!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group>
@@ -234,13 +235,13 @@ const SignupForm = () => {
                             <Form.Control.Feedback type='invalid'>Grade is required!</Form.Control.Feedback>
                         </Form.Group>
                         <Button
-                            disabled={!(studentFormData.username && studentFormData.email && studentFormData.password && studentFormData.grade)}
+                            disabled={!(studentFormData.name && studentFormData.email && studentFormData.password && studentFormData.grade)}
                             type='submit'
                             variant='success'>
                             Submit
                         </Button>
                     </Form>
-                    {/* {error && <div>Sign up failed</div>} */}
+                    {studentError && <div>Sign up failed</div>}
                 </>
             }
         </>

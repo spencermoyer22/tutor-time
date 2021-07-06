@@ -5,8 +5,6 @@ const Home = () => {
 
   return (
     <div className="container" >
-
-        <a href="/Profile">Profile</a>
       <h1 className="welcome"> Welcome to Tutor Time!</h1>
       <div className="homepage">
       <p className = "homepage-text">

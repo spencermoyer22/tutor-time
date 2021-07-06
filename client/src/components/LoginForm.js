@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import { STUDENT_LOGIN, TUTOR_LOGIN } from '../utils/mutations';
 // import the actual mutation
 import Auth from '../utils/auth';
 
@@ -9,14 +10,15 @@ const LoginForm = () => {
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showForm, setShowForm] = useState(null);
-    // create variable for login mutation
+    const [loginStudent, {studentError}] = useMutation(STUDENT_LOGIN);
+    const [loginTutor, {tutorError}] = useMutation(TUTOR_LOGIN);
 
     const handleInputChange = async (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value })
     };
 
-    const handleFormSubmit = async (event) => {
+    const handleTutorFormSubmit = async (event) => {
         event.preventDefault();
 
         const form = event.currentTarget;
@@ -26,8 +28,31 @@ const LoginForm = () => {
         }
 
         try {
-            const { data } = await LoginForm({ variables: { ...formData } });
-            Auth.login(data.login.token);
+            const { data } = await loginTutor({ variables: { ...formData } });
+            Auth.loginTutor(data.login.token);
+        } catch (err) {
+            console.log(err);
+            setShowAlert(true);
+        }
+
+        setFormData({
+            email: '',
+            password: ''
+        });
+    };
+
+    const handleStudentFormSubmit = async (event) => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropogation();
+        }
+
+        try {
+            const { data } = await loginStudent({ variables: { ...formData } });
+            Auth.loginTutor(data.login.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -48,7 +73,7 @@ const LoginForm = () => {
             {showForm === 'tutor' &&
                 <div>
                     <p> TUTOR FORM HERE </p>
-                    <Form noValidate validated={validated}>
+                    <Form noValidate validated={validated} onSubmit={handleTutorFormSubmit}>
                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Invalid credentials!
                         </Alert>
@@ -82,12 +107,12 @@ const LoginForm = () => {
                             >Submit
                         </Button>
                     </Form>
-                    {/* {error && <div>Login failed</div>} */}
+                    {tutorError && <div>Login failed</div>}
                 </div>}
             {showForm === 'student' &&
                 <div>
                     <p> STUDENT FORM </p>
-                    <Form noValidate validated={validated}>
+                    <Form noValidate validated={validated} onSubmit={handleStudentFormSubmit}>
                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
                             Invalid credentials!
                         </Alert>
@@ -121,7 +146,7 @@ const LoginForm = () => {
                             >Submit
                         </Button>
                     </Form>
-                    {/* {error && <div>Login failed</div>} */}
+                    {studentError && <div>Login failed</div>}
                 </div>}
         </div>
     );

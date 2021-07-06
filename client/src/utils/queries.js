@@ -2,9 +2,22 @@ import { gql } from '@apollo/client';
 
 // import gql from 'graphql-tag';
 
-export const QUERY_STUDENT = gql`
+export const QUERY_ME_TUTOR = gql`
+    {
+        getMeTutor {
+            _id
+            name
+            email
+            rate
+            subject
+            about
+        }
+    }
+`;
+
+export const QUERY_ME_STUDENT = gql`
 {
-    getMe
+    getMeStudent
     {
     _id
     name
