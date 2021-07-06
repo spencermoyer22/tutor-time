@@ -41,11 +41,9 @@ function App() {
           {/* <Switch> */}
           <div className="App">
             <Navbar />
-            <header className="App-header">
               <Route exact path="/" component={Home} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/searchtutors" component={TutorSearch} />
-            </header>
           </div>
           {/* </Switch> */}
         {/* </studentContext.Provider> */}

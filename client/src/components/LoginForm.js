@@ -28,7 +28,7 @@ const LoginForm = () => {
 
         try {
             const { data } = await loginTutor({ variables: { ...formData } });
-            Auth.loginTutor(data.login.token);
+            Auth.login(data.tutorLogin.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -51,7 +51,7 @@ const LoginForm = () => {
 
         try {
             const { data } = await loginStudent({ variables: { ...formData } });
-            Auth.loginTutor(data.login.token);
+            Auth.login(data.studentLogin.token);
         } catch (err) {
             console.log(err);
             setShowAlert(true);
