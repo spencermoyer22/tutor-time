@@ -1,5 +1,5 @@
 const db = require ('./connection');
-const { Stundent, Tutor, Student } = require('../models');
+const { Student, Tutor } = require('../models');
 
 db.once('open', async () => {
 
