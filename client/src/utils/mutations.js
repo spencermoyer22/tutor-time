@@ -23,10 +23,10 @@ export const STUDENT_LOGIN = gql`
 `;
 
 export const ADD_TUTOR = gql`
-  mutation addTutor($name: String, $email: String!, $password: String!, $subject: String!, $rate: String!) {
+  mutation addTutor($name: String!, $email: String!, $password: String!, $subject: String!, $rate: String!) {
     addTutor(name: $name, email: $email, password: $password, subject: $subject, rate: $rate) {
       token
-      user {
+      tutor {
         _id
       }
     }
@@ -37,7 +37,7 @@ export const ADD_STUDENT = gql`
   mutation addStudent($name: String!, $email: String!, $password: String!, $grade: String!) {
     addStudent(name: $name, email: $email, password: $password, grade: $grade) {
       token
-      user {
+      student {
         _id
       }
     }

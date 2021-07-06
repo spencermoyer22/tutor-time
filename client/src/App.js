@@ -38,14 +38,14 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         {/* <studentContext.Provider > */}
-          {/* <Switch> */}
+          <Switch>
           <div className="App">
             <Navbar />
               <Route exact path="/" component={Home} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/searchtutors" component={TutorSearch} />
           </div>
-          {/* </Switch> */}
+          </Switch>
         {/* </studentContext.Provider> */}
       </Router>
     </ApolloProvider>

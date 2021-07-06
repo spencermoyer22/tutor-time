@@ -15,14 +15,12 @@ const SignupForm = () => {
     const [addStudent, { studentError }] = useMutation(ADD_STUDENT);
     const [addTutor, { tutorError }] = useMutation(ADD_TUTOR);
 
-    const handleTutorInputChange = (event) => {
-        console.log(event.target);
+    const handleTutorInputChange = async (event) => {
         const { name, value } = event.target;
-        console.log(name, value);
         setTutorFormData({ ...tutorFormData, [name]: value });
     };
 
-    const handleStudentInputChange = (event) => {
+    const handleStudentInputChange = async (event) => {
         const { name, value } = event.target;
         setStudentFormData({ ...studentFormData, [name]: value });
     };
@@ -38,7 +36,6 @@ const SignupForm = () => {
 
         try {
             const { data } = await addTutor({ variables: { ...tutorFormData } });
-            console.log(tutorFormData);
 
             Auth.login(data.addTutor.token);
         } catch (err) {
@@ -47,7 +44,7 @@ const SignupForm = () => {
         }
 
         setTutorFormData({
-            username: '',
+            name: '',
             email: '',
             password: '',
             subject: '',
@@ -66,7 +63,6 @@ const SignupForm = () => {
 
         try {
             const { data } = await addStudent({ variables: { ...studentFormData } });
-            console.log(studentFormData);
 
             Auth.login(data.addStudent.token);
         } catch (err) {
@@ -75,7 +71,7 @@ const SignupForm = () => {
         }
 
         setStudentFormData({
-            username: '',
+            name: '',
             email: '',
             password: '',
             grade: ''
@@ -111,7 +107,7 @@ const SignupForm = () => {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label htmlFor='email' >Email</Form.Label>
+                            <Form.Label htmlFor='email'>Email</Form.Label>
                             <Form.Control
                                 type='email'
                                 placeholder='Your email address'
@@ -137,15 +133,15 @@ const SignupForm = () => {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Select a subject</Form.Label>
+                            <Form.Label>Subject</Form.Label>
                             <Form.Control
                                 as="select"
-                                custom
                                 onChange={handleTutorInputChange}
                                 name='subject'
                                 value={tutorFormData.subject}
                                 required
                             >
+                                <option value=''>Select a subject</option>
                                 <option value='Biology'>Biology</option>
                                 <option value='Chemistry'>Chemistry</option>
                                 <option value='Computer Science'>Comupter Science</option>
@@ -160,10 +156,10 @@ const SignupForm = () => {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label htmlFor='rate'>Rate</Form.Label>
+                            <Form.Label htmlFor='username'>Rate</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder='Enter hourly rate (USD)'
+                                placeholder='Your current grade'
                                 name='rate'
                                 onChange={handleTutorInputChange}
                                 value={tutorFormData.rate}
@@ -174,9 +170,11 @@ const SignupForm = () => {
                         <Button
                             disabled={!(tutorFormData.name && tutorFormData.email && tutorFormData.password && tutorFormData.subject && tutorFormData.rate)}
                             type='submit'
-                            variant='success'>
+                            variant='success'
+                            onClick={() => console.log(tutorFormData)}
+                        >
                             Submit
-                        </Button>
+                    </Button>
                     </Form>
                     {tutorError && <div>Sign up failed</div>}
                 </>
