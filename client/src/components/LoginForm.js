@@ -29,6 +29,7 @@ const LoginForm = () => {
         try {
             const { data } = await loginTutor({ variables: { ...formData } });
             Auth.login(data.tutorLogin.token);
+            localStorage.setItem('userType', 'TUTOR');
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -52,6 +53,7 @@ const LoginForm = () => {
         try {
             const { data } = await loginStudent({ variables: { ...formData } });
             Auth.login(data.studentLogin.token);
+            localStorage.setItem('userType', 'STUDENT');
         } catch (err) {
             console.log(err);
             setShowAlert(true);

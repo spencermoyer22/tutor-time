@@ -1,94 +1,85 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { Tutor, Student } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { Tutor, Student } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
-    Query: {
+  Query: {
+    tutors: async () => {
+      return Tutor.find()
+        .select('-password')
 
-        tutors: async (parent, args, context) => {
-            if (context.tutor) {
-                const tutor = await Tutor.findById(context.tutor._id).populate()
-
-                return tutor;
-            }
-
-            throw new AuthenticationError('Not logged in');
-        },
-
-        getMeStudent: async (parent, args, context) => {
-          
-            if (context.student) {
-                const student = await Student.findById(context._id).populate()
-
-                return student;
-            }
-
-            throw new AuthenticationError('Not logged in');
-        },
-        getMeTutor: async (parent, args, context) => {
-          
-            if (context.tutor) {
-                const tutor = await Tutor.findById(context._id).populate()
-
-                return tutor;
-            }
-
-            throw new AuthenticationError('Not logged in');
-        },
+    //   throw new AuthenticationError("Not logged in");
     },
 
-    Mutation: {
+    getMeStudent: async (parent, { _id }) => {
+      const student = await Student.findOne({ _id })
+        .select("-__v -password")
+        .populate("tutors");
 
-        addTutor: async (parent, args) => {
-            const tutor = await Tutor.create(args);
-            const token = signToken(tutor);
+      return student;
 
-            return { token, tutor };
-        },
+      throw new AuthenticationError("Not logged in");
+    },
+    getMeTutor: async (parent, { _id }) => {
+      const tutor = await Tutor.findOne({ _id }).select("-__v -password");
 
-        addStudent: async (parent, args) => {
-            const student = await Student.create(args);
-            const token = signToken(student);
+      return tutor;
 
-            return { token, student };
-        },
+      throw new AuthenticationError("Not logged in");
+    },
+  },
 
-        tutorLogin: async (parent, { email, password }) => {
-            const tutor = await Tutor.findOne({ email });
+  Mutation: {
+    addTutor: async (parent, args) => {
+      const tutor = await Tutor.create(args);
+      const token = signToken(tutor);
 
-            if (!tutor) {
-                throw new AuthenticationError('Incorrect credentials');
-            }
+      return { token, tutor };
+    },
 
-            const correctPw = await tutor.isCorrectPassword(password);
+    addStudent: async (parent, args) => {
+      const student = await Student.create(args);
+      const token = signToken(student);
 
-            if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
-            }
+      return { token, student };
+    },
 
-            const token = signToken(tutor);
+    tutorLogin: async (parent, { email, password }) => {
+      const tutor = await Tutor.findOne({ email });
 
-            return { token, tutor };
-        },
+      if (!tutor) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-        studentLogin: async (parent, { email, password }) => {
-            const student = await Student.findOne({ email });
+      const correctPw = await tutor.isCorrectPassword(password);
 
-            if (!student) {
-                throw new AuthenticationError('Incorrect credentials');
-            }
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
 
-            const correctPw = await student.isCorrectPassword(password);
+      const token = signToken(tutor);
 
-            if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
-            }
+      return { token, tutor };
+    },
 
-            const token = signToken(student);
+    studentLogin: async (parent, { email, password }) => {
+      const student = await Student.findOne({ email });
 
-            return { token, student };
-        }
-    }
+      if (!student) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const correctPw = await student.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(student);
+
+      return { token, student };
+    },
+  },
 };
 
 module.exports = resolvers;

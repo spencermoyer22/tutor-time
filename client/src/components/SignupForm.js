@@ -38,6 +38,7 @@ const SignupForm = () => {
             const { data } = await addTutor({ variables: { ...tutorFormData } });
 
             Auth.login(data.addTutor.token);
+            localStorage.setItem('userType', 'TUTOR');
         } catch (err) {
             console.log(err);
             setShowAlert(true);
@@ -65,6 +66,7 @@ const SignupForm = () => {
             const { data } = await addStudent({ variables: { ...studentFormData } });
 
             Auth.login(data.addStudent.token);
+            localStorage.setItem('userType', 'STUDENT');
         } catch (err) {
             console.log(err);
             setShowAlert(true);
