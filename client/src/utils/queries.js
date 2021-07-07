@@ -16,26 +16,25 @@ export const QUERY_TUTORS = gql`
 `;
 
 export const QUERY_ME_TUTOR = gql`
-  query tutor($email: String!) {
-    tutor(email: $email) {
+{
+  tutor {
       _id
       name
       email
       rate
       subject
       about
-    }
   }
+}
 `;
 
 export const QUERY_ME_STUDENT = gql`
-  query student($email: String!) {
-    student(email: $email) {
+{
+  student {
       _id
       name
       email
       grade
-      about
       tutors {
         _id
         name
@@ -44,6 +43,6 @@ export const QUERY_ME_STUDENT = gql`
         subject
         about
       }
-    }
   }
+}
 `;

@@ -9,14 +9,27 @@ const resolvers = {
         .select('-password')
     },
 
-    student: async (parent, { email}) => {
-      return Student.findOne({ email })
-        .select('-__v -password')
-        .populate('tutors')
+    student: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await Student.findOne({ _id: context.user._id })
+            .select('-__v -password')
+            .populate('savedBooks')
+
+        return userData;
+    }
+
+    throw new AuthenticationError('Not logged in');
     },
-    tutor: async (parent, { email }) => {
-      return Tutor.findOne({ email })
-        .select('-__v -password')
+    tutor: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await Tutor.findOne({ _id: context.user._id })
+            .select('-__v -password')
+            .populate('savedBooks')
+
+        return userData;
+    }
+
+    throw new AuthenticationError('Not logged in');
     }
   },
 
