@@ -6,8 +6,6 @@ import { QUERY_ME_STUDENT, QUERY_ME_TUTOR } from "../utils/queries"
 
 import Auth from '../utils/auth';
 
-import { useParams } from 'react-router-dom'
-
 
 const Profile = () => {
     
@@ -15,9 +13,7 @@ const Profile = () => {
     const profile = Auth.getProfile();
     console.log(profile.data.email);
    
-    const { loading, data } = useQuery(user === 'TUTOR' ? QUERY_ME_TUTOR : QUERY_ME_STUDENT, {
-        variables: { _id: profile.data.email }
-    });
+    const { loading, data } = useQuery(user === 'TUTOR' ? QUERY_ME_TUTOR : QUERY_ME_STUDENT);
     
     const userData = data?.student || data?.tutor || {};
     if (loading) {

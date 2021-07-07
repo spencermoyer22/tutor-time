@@ -13,7 +13,6 @@ const SearchTutors = () => {
   const handleFilter = async (event) => {
     const { value } = event.target;
     setFilterContent(value);
-    console.log(filteredTutors);
   }
 
   if (!tutors.length) {
