@@ -17,9 +17,13 @@ const SearchTutors = () => {
   if (!tutors.length) {
     return <h3>No tutors have signed up yet...</h3>;
   }
+  if (loading) {
+    return <div>Loading...</div>
+  }
   return (
     <div className='container-fluid'>
-      <Form className='mt-5 mx-5'>
+      <h2 className='text-center mt-3 mb-0'>Filter tutors by subject below</h2>
+      <Form className='mt-2 mx-5'>
         <Form.Group controlId="exampleForm.SelectCustom">
           <Form.Control
             as="select"
