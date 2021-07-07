@@ -54,4 +54,19 @@
   font-family: 'Bree Serif', serif;
 }
 
+.nav-links {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  font-size: 20px;
+}
 
+.nav {
+  font-family: 'Bree Serif', serif;
+  color: #3437eb;
+}
+
+.title {
+  font-size: 35px;
+  color: #3437eb;
+}

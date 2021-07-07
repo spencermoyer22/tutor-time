@@ -11,14 +11,14 @@ const AppNavbar = () => {
 
     return (
         <div>
-            <Navbar expand='lg'>
+            <Navbar expand='lg' className="nav">
                 <Container fluid>
-                    <Navbar.Brand as={Link} to='/'>
+                    <Navbar.Brand className="title" as={Link} to='/'>
                         Tutor Time
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls='navbar' />
                     <Navbar.Collapse id='navbar'>
-                        <Nav>
+                        <Nav className = "nav-links">
                             {/* change link to tutors page when created */}
                             <Nav.Link as={Link} to='/'>
                                 
