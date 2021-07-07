@@ -7,26 +7,17 @@ const resolvers = {
     tutors: async () => {
       return Tutor.find()
         .select('-password')
-
-    //   throw new AuthenticationError("Not logged in");
     },
 
-    getMeStudent: async (parent, { _id }) => {
-      const student = await Student.findOne({ _id })
-        .select("-__v -password")
-        .populate("tutors");
-
-      return student;
-
-      throw new AuthenticationError("Not logged in");
+    student: async (parent, { email}) => {
+      return Student.findOne({ email })
+        .select('-__v -password')
+        .populate('tutors')
     },
-    getMeTutor: async (parent, { _id }) => {
-      const tutor = await Tutor.findOne({ _id }).select("-__v -password");
-
-      return tutor;
-
-      throw new AuthenticationError("Not logged in");
-    },
+    tutor: async (parent, { email }) => {
+      return Tutor.findOne({ email })
+        .select('-__v -password')
+    }
   },
 
   Mutation: {

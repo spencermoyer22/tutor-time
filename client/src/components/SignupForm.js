@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Alert, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { ADD_STUDENT, ADD_TUTOR } from '../utils/mutations';
 // import mutation to add user

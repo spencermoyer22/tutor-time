@@ -3,8 +3,8 @@ import { gql } from "@apollo/client";
 // import gql from 'graphql-tag';
 
 export const QUERY_ME_TUTOR = gql`
-  query getMeTutor($id: ID!) {
-    getMeTutor(_id: $id) {
+  query tutor($email: String!) {
+    tutor(email: $email) {
       _id
       name
       email
@@ -16,8 +16,8 @@ export const QUERY_ME_TUTOR = gql`
 `;
 
 export const QUERY_ME_STUDENT = gql`
-  query getMeStudent($id: ID!) {
-    getMeStudent(_id: $id) {
+  query student($email: String!) {
+    student(email: $email) {
       _id
       name
       email
@@ -34,16 +34,3 @@ export const QUERY_ME_STUDENT = gql`
     }
   }
 `;
-
-// export const QUERY_TUTORS = gql`
-//   query tutors($id: ID) {
-//     tutors(_id: $id) {
-//       _id
-//       name
-//       email
-//       subject
-//       rate
-//       about
-//     }
-//   }
-// `;

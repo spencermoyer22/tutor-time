@@ -13,10 +13,10 @@ const Profile = () => {
     
     const user = localStorage.getItem('userType');
     const profile = Auth.getProfile();
-    console.log(profile.data._id);
+    console.log(profile.data.email);
    
     const { loading, data } = useQuery(user === 'TUTOR' ? QUERY_ME_TUTOR : QUERY_ME_STUDENT, {
-        variables: { _id: profile.data._id }
+        variables: { _id: profile.data.email }
     });
     
     const userData = data?.student || data?.tutor || {};

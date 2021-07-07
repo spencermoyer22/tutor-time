@@ -33,8 +33,8 @@ const typeDefs = gql`
 
     type Query {
         tutors(_id: ID): [Tutor]
-        getMeStudent(_id: ID!): Student
-        getMeTutor(_id: ID!): Tutor
+        student(email: String!): Student
+        tutor(email: String!): Tutor
     }
 
     type Mutation {
