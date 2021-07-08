@@ -51,6 +51,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   font-family: 'Bree Serif', serif;
+  margin-top: -10%;
 }
 
 .nav-links {
@@ -67,4 +68,11 @@
 
 .title {
   font-size: 35px;
+}
+
+.profile {
+  border: rgb(243, 86, 58);
+  border-style: double;
+  border-width: 10px;
+  width: 100%;
 }
