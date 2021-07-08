@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 
 const SearchTutors = () => {
   const { data, loading } = useQuery(QUERY_TUTORS);
+  console.log(data);
   const { tutors } = data;
   const [filterContent, setFilterContent] = useState();
   let filteredTutors = tutors.filter(tutor => tutor.subject === filterContent);

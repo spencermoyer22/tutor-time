@@ -161,7 +161,7 @@ const SignupForm = () => {
                             <Form.Label htmlFor='username'>Rate</Form.Label>
                             <Form.Control
                                 type='text'
-                                placeholder='Your current grade'
+                                placeholder='Your rate'
                                 name='rate'
                                 onChange={handleTutorInputChange}
                                 value={tutorFormData.rate}
