@@ -76,3 +76,14 @@
   border-width: 10px;
   width: 100%;
 }
+
+.tutor-search {
+  background-color: rgb(255, 216, 0, 75%);
+  font-family: 'Bree Serif', serif;
+  font-size: 20px;
+}
+
+.tutorName {
+  font-size: 25px;
+  text-align: center;
+}
