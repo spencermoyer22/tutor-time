@@ -20,7 +20,7 @@ const Profile = () => {
 
     return (
         <div className="profile-body">
-            <div>
+            <div className = "profile">
                 {/* <h1> Name: { } </h1>
                 <h2> Grade: </h2>
                 <h2> Rate:</h2>
@@ -30,7 +30,7 @@ const Profile = () => {
                 <h1>{userData.name}</h1>
                 {data.tutor ? (<div className='justify-content around'>
                     <p>Subject: {userData.subject}</p>
-                    <p>Rate: ${userData.rate}</p>
+                    <p>Rate: {userData.rate}</p>
                 </div>) : (
                     <p>Grade: {userData.grade}</p>
                 )}
