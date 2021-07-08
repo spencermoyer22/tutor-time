@@ -38,8 +38,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addTutor(name: String!, email: String!, password: String!, subject: String!, rate: String!): TutorAuth
-        addStudent(name: String!, email: String!, password: String!, grade: String!): StudentAuth
+        addTutor(name: String!, email: String!, password: String!, subject: String!, rate: String!, about: String!): TutorAuth
+        addStudent(name: String!, email: String!, password: String!, grade: String!, about: String!): StudentAuth
         editTutor(rate: String, about: String): Tutor
         editStudent(grade: String, about: String): Student
         studentLogin(email: String!, password: String!): StudentAuth

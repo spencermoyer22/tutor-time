@@ -21,12 +21,6 @@ const Profile = () => {
     return (
         <div className="profile-body">
             <div className = "profile">
-                {/* <h1> Name: { } </h1>
-                <h2> Grade: </h2>
-                <h2> Rate:</h2>
-                <h3> Subject: </h3>
-                <h4> About Me: </h4> <button type="submit">Edit</button>
-                <p> </p> */}
                 <h1>{userData.name}</h1>
                 {data.tutor ? (<div className='justify-content around'>
                     <p>Subject: {userData.subject}</p>
@@ -34,7 +28,7 @@ const Profile = () => {
                 </div>) : (
                     <p>Grade: {userData.grade}</p>
                 )}
-                {userData.about ? <div>{userData.about}</div> : <button className='btn createAbout'>Create your bio now!</button>}
+                {userData.about}
                 {data.tutor && <div>If you are interested in working together, contact me at my email: {userData.email}</div>}
             </div>
         </div>

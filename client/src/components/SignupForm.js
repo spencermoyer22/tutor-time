@@ -7,8 +7,8 @@ import Auth from '../utils/auth';
 
 const SignupForm = () => {
     // use mutation declaration
-    const [studentFormData, setStudentFormData] = useState({ name: '', email: '', password: '', grade: '' });
-    const [tutorFormData, setTutorFormData] = useState({ name: '', email: '', password: '', subject: '', rate: '' });
+    const [studentFormData, setStudentFormData] = useState({ name: '', email: '', password: '', grade: '', about: '' });
+    const [tutorFormData, setTutorFormData] = useState({ name: '', email: '', password: '', subject: '', rate: '', about: '' });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showForm, setShowForm] = useState(null);
@@ -169,8 +169,23 @@ const SignupForm = () => {
                             />
                             <Form.Control.Feedback type='invalid'>Rate is required!</Form.Control.Feedback>
                         </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label htmlFor='About'>About</Form.Label>
+                            <Form.Control
+                                type='text'
+                                as='textarea'
+                                rows={3}
+                                placeholder='Tell us something about yourself'
+                                name='about'
+                                onChange={handleTutorInputChange}
+                                value={tutorFormData.about}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>About is required!</Form.Control.Feedback>
+                        </Form.Group>
                         <Button
-                            disabled={!(tutorFormData.name && tutorFormData.email && tutorFormData.password && tutorFormData.subject && tutorFormData.rate)}
+                            disabled={!(tutorFormData.name && tutorFormData.email && tutorFormData.password && tutorFormData.subject && tutorFormData.rate && tutorFormData.about)}
                             type='submit'
                             variant='success'
                             onClick={() => console.log(tutorFormData)}
@@ -242,8 +257,23 @@ const SignupForm = () => {
                             />
                             <Form.Control.Feedback type='invalid'>Grade is required!</Form.Control.Feedback>
                         </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label htmlFor='About'>About</Form.Label>
+                            <Form.Control
+                                type='text'
+                                as='textarea'
+                                rows={3}
+                                placeholder='Tell us something about yourself'
+                                name='about'
+                                onChange={handleStudentInputChange}
+                                value={studentFormData.about}
+                                required
+                            />
+                            <Form.Control.Feedback type='invalid'>About is required!</Form.Control.Feedback>
+                        </Form.Group>
                         <Button
-                            disabled={!(studentFormData.name && studentFormData.email && studentFormData.password && studentFormData.grade)}
+                            disabled={!(studentFormData.name && studentFormData.email && studentFormData.password && studentFormData.grade && studentFormData.about)}
                             type='submit'
                             variant='success'>
                             Submit

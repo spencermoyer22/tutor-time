@@ -83,6 +83,26 @@ const resolvers = {
 
       return { token, student };
     },
+
+    editStudent: async (parent, args, context) => {
+      if (context.user) {
+        const updatedStudent = await Student.findByIdAndUpdate(context.user._id, args, { new: true });
+
+        return updatedStudent;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    },
+
+    editTutor: async (parent, args, context) => {
+      if (context.user) {
+        const updatedTutor = await Tutor.findByIdAndUpdate(context.user._id, args, { new: true });
+
+        return updatedTutor;
+      }
+
+      throw new AuthenticationError('Not logged in');
+    }
   },
 };
 
