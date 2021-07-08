@@ -1,0 +1,31 @@
+{
+  "name": "state-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon",
+    "seed": "node config/seeds.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spencermoyer22/tutor-time"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spencermoyer22/tutor-time/issues"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.15.1",
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.22"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
