@@ -5,18 +5,11 @@ import Form from 'react-bootstrap/Form';
 
 const SearchTutors = () => {
   const { data, loading } = useQuery(QUERY_TUTORS);
-  console.log(data);
-  const { tutors } = data;
   const [filterContent, setFilterContent] = useState();
-  let filteredTutors = tutors.filter(tutor => tutor.subject === filterContent);
 
   const handleFilter = async (event) => {
     const { value } = event.target;
     setFilterContent(value);
-  }
-
-  if (!tutors.length) {
-    return <h3>No tutors have signed up yet...</h3>;
   }
   if (loading) {
     return <div>Loading...</div>
@@ -48,8 +41,8 @@ const SearchTutors = () => {
         </Form.Group>
       </Form>
       <div className='row'>
-        {filteredTutors &&
-          filteredTutors.map(tutor => (
+        {data.tutors &&
+          data.tutors.filter(filteredTutors => filteredTutors.subject === filterContent).map(tutor => (
             <div key={tutor._id} className='card mb-3 col-10 col-md-5 mx-auto'>
               <div className='card-body'>
                 <p className='card-title'>{tutor.name}</p>
@@ -57,8 +50,8 @@ const SearchTutors = () => {
                   <p className='d-inline'>Subject: {tutor.subject}</p>
                   <p className='d-inline'>Rate: ${tutor.rate}</p>
                 </div>
-                {tutor.about ? <p className='card-text'>{tutor.about}</p> : <p className='card-text'>This tutor has no bio...</p>}
-                <p className='footer'>Contact Me: {tutor.email}</p>
+                {tutor.about}
+                <p className='footer mt-2'>Contact Me: {tutor.email}</p>
               </div>
             </div>
           ))}
