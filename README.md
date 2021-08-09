@@ -1,11 +1,5 @@
 # Tutor Time
-  ## Table of Contents
-    * [Description](#description)
-    * [Usage](#usage)
-    * [Installation](#installation)
-    * [Credits](#credits)
-    * [License](#license)
-    
+
   ## Description
   Tutor time is a full-stack MERN application that allows tutors to create a profile about their teaching and students to find tutors that they want to learn from.
     
