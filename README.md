@@ -10,6 +10,14 @@ Students and tutors have separate login and sign-up forms and requirements. When
   git clone from SSH: git@github.com:spencermoyer22/tutor-time.git
   
   npm i to install packages.
+  
+  ## Technologies
+  * MERN Stack
+  * bcrypt
+  * Apollo Client/Server
+  * GraphQL
+  * JSON Web Token
+  * Bootstrap
     
   ## Credits
   Spencer Moyer (spencerymoyer22)
