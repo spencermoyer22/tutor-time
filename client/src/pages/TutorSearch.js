@@ -43,7 +43,7 @@ const SearchTutors = () => {
       <div className='row'>
         {data.tutors &&
           data.tutors.filter(filteredTutors => filteredTutors.subject === filterContent).map(tutor => (
-            <div key={tutor._id} className='card mb-3 col-10 col-md-5 mx-auto'>
+            <div key={tutor._id} className='card mb-3 col-8 mx-auto'>
               <div className='card-body'>
                 <p className='card-title tutorName'>{tutor.name}</p>
                 <div className='d-flex justify-content-between'>
